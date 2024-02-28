@@ -11,15 +11,30 @@
     <title>Spotify Cards </title>
 </head>
 
-<body>
+<body class="bg-[#1d2d3c]">
     <div id="app">
 
         <h2 class="text-center text-4xl text-blue-600">
             SONG LIST
         </h2>
-        <ul>
-            <li v-for="song in songList"> {{song.title}}</li>
-        </ul>
+        <div class="cards-container flex w-1/2 p-5 mx-auto   flex-wrap gap-3">
+            <div class="song-card text-white gap-3  flex flex-col items-center bg-[#112030] p-4"
+                v-for="(song, index) in songList" :key="index" style="width: calc(100% / 3 - 1em);">
+                <img :src="song.poster" :alt="song.title" class="w-[150px] h-[150px]">
+                <div class="text-info flex flex-col gap-1 items-center text-center">
+                    <h3 class="font-bold text-xl">
+                        {{song.title}}
+                    </h3>
+                    <span class="text-base">
+                        {{song.author}}
+                    </span>
+                    <span class="font-semibold text-lg">
+                        {{song.year}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 
