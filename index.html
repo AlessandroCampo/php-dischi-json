@@ -14,12 +14,29 @@
 <body class="bg-[#1d2d3c]">
     <div id="app">
 
-        <h2 class="text-center text-4xl text-blue-600">
-            SONG LIST
-        </h2>
-        <div class="cards-container flex w-1/2 p-5 mx-auto   flex-wrap gap-3">
-            <div class="song-card text-white gap-3  flex flex-col items-center bg-[#112030] p-4"
-                v-for="(song, index) in songList" :key="index" style="width: calc(100% / 3 - 1em);">
+        <div v-if="single" class="overlay">
+
+            <div class="song-card full-page text-white gap-3  flex flex-col items-center p-4 mt-[5px]">
+                <button class="rounded-full text-red-100 bg-red-600" @click="() => {single=undefined}">X
+                </button>
+                <img :src="single.poster" :alt="single.title">
+                <div class="text-info flex flex-col gap-1 items-center text-center">
+                    <h3 class="font-bold text-xl">
+                        {{single.title}}
+                    </h3>
+                    <span class="text-base">
+                        {{single.author}}
+                    </span>
+                    <span class="font-semibold text-lg">
+                        {{single.year}}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="cards-container flex w-1/2 p-5 mx-auto   flex-wrap gap-[30px]">
+            <div class="song-card text-white gap-3  flex flex-col items-center bg-[#112030] p-4 mt-[5px]"
+                v-for="(song, index) in songList" :key="index" style="width: calc((100% - 60px) / 3)
+                ;" @click="getSingle(index)">
                 <img :src="song.poster" :alt="song.title" class="w-[150px] h-[150px]">
                 <div class="text-info flex flex-col gap-1 items-center text-center">
                     <h3 class="font-bold text-xl">
@@ -37,6 +54,40 @@
 
 
     </div>
+
+
+    <style>
+        .overlay {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .overlay .song-card.full-page {
+            position: relative;
+            width: 25%;
+            height: 60%;
+            background-color: transparent;
+        }
+
+        .overlay .song-card.full-page img {
+            width: 50%;
+            height: 50%;
+        }
+
+        .overlay button {
+            position: absolute;
+            right: 15%;
+            top: -5%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5em;
+        }
+    </style>
 
 
 

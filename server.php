@@ -1,7 +1,14 @@
 <?php
 
 
+$db_array = file_get_contents('db.json');
+$php_res = json_decode($db_array, true);
 
-$res = file_get_contents('db.json');
 
-echo $res;
+if (isset($_POST['single'])) {
+    echo json_encode($php_res[$_POST['single']]);
+} else {
+    echo $db_array;
+}
+
+// 

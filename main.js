@@ -4,7 +4,8 @@ createApp({
     data() {
         return {
             apiUrl: 'server.php',
-            songList: []
+            songList: [],
+            single: undefined
         }
     },
     created() {
@@ -18,6 +19,17 @@ createApp({
                 this.songList = res.data
             }).catch((err) => {
                 console.log(err)
+            })
+        },
+        getSingle(par) {
+            const data = {
+                single: par
+            }
+            axios.post(this.apiUrl, data, {
+                headers: { 'Content-type': 'multipart/form-data' }
+            }).then((res) => {
+                this.single = res.data
+
             })
         }
     }
