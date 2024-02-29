@@ -13,7 +13,10 @@
 
 <body class="bg-[#1d2d3c]">
     <div id="app">
-
+        <header class="py-4 px-7 bg-[#06131f]">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/991px-Spotify_icon.svg.png"
+                alt="" class="w-[50px] h-[50px]">
+        </header>
         <div v-if="single" class="overlay">
 
             <div class="song-card full-page text-white gap-3  flex flex-col items-center p-4 mt-[5px]">
@@ -34,7 +37,7 @@
             </div>
         </div>
         <div class="cards-container flex w-1/2 p-5 mx-auto   flex-wrap gap-[30px]">
-            <div class="song-card text-white gap-3  flex flex-col items-center bg-[#112030] p-4 mt-[5px]"
+            <div class="song-card text-white gap-3  flex flex-col items-center bg-[#112030] p-4 mt-[5px] cursor-pointer"
                 v-for="(song, index) in songList" :key="index" style="width: calc((100% - 60px) / 3)
                 ;" @click="getSingle(index)">
                 <img :src="song.poster" :alt="song.title" class="w-[150px] h-[150px]">
